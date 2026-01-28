@@ -1,1 +1,16 @@
+2026-01-28T10:30:01Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:30:05Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:30:15Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:30:18Z OK user=bob ip=8.8.8.8
+2026-01-28T10:31:01Z FAIL user=carol ip=5.6.7.8
+2026-01-28T10:31:10Z FAIL user=carol ip=5.6.7.8
+2026-01-28T10:31:20Z FAIL user=carol ip=5.6.7.8
+2026-01-28T10:32:00Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:32:01Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:32:02Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:32:03Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:32:04Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:32:05Z FAIL user=alice ip=1.2.3.4
+2026-01-28T10:33:10Z OK user=alice ip=1.2.3.4
+bad_line_that_should_not_crash_the_program
 
