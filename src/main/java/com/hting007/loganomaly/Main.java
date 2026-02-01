@@ -26,6 +26,12 @@ import java.util.regex.Pattern;
 )
 public class Main implements Callable<Integer> {
 
+    @CommandLine.Option(
+        names = {"--tz"},
+        description = "IANA time zone for local timestamps (default: system zone)"
+    )
+    private String timeZoneId;
+
     @CommandLine.Option(names = {"-i", "--input"}, required = true, description = "Path to log file")
     private Path input;
 
@@ -142,6 +148,16 @@ public class Main implements Callable<Integer> {
         // Build alerts: for each keyValue, compute mean/std across windows and flag zscore spikes
         List<Map<String, Object>> alerts = new ArrayList<>();
 
+        ZoneId zid;
+        try {
+            zid = (timeZoneId == null || timeZoneId.isBlank())
+                    ? ZoneId.systemDefault()
+                    : ZoneId.of(timeZoneId);
+        } catch (Exception e) {
+            System.err.println("ERROR: invalid --tz value: " + timeZoneId);
+            return 2;
+        }
+
         for (var entry : counts.entrySet()) {
             String keyValue = entry.getKey();
             Map<Long, Integer> perWindow = entry.getValue();
@@ -162,15 +178,30 @@ public class Main implements Callable<Integer> {
 
                 if (std > 0.0 && z >= zThreshold) {
                     Map<String, Object> alert = new LinkedHashMap<>();
+
+                    Instant ws = Instant.ofEpochSecond(w);
+                    Instant we = Instant.ofEpochSecond(w + windowSeconds);
+
                     alert.put("type", "error_spike_zscore");
                     alert.put("key", key);
                     alert.put("keyValue", keyValue);
-                    alert.put("windowStart", Instant.ofEpochSecond(w));
-                    alert.put("windowEnd", Instant.ofEpochSecond(w + windowSeconds));
+
+                    // keep original (UTC) fields
+                    alert.put("windowStart", ws);
+                    alert.put("windowEnd", we);
+
+                    // add clearer fields
+                    alert.put("windowStartUtc", ws);
+                    alert.put("windowEndUtc", we);
+                    alert.put("windowStartLocal", ws.atZone(zid).toString());
+                    alert.put("windowEndLocal", we.atZone(zid).toString());
+
+
                     alert.put("count", c);
                     alert.put("zscore", round2(z));
                     alert.put("examples", examples.getOrDefault(keyValue, Map.of())
                             .getOrDefault(w, List.of()));
+
                     alerts.add(alert);
                 }
             }
