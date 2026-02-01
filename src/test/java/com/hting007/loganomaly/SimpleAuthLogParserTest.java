@@ -1,6 +1,6 @@
-package com.yourname.loganomaly;
+package com.hting007.loganomaly;
 
-import com.yourname.loganomaly.parse.SimpleAuthLogParser;
+import com.hting007.loganomaly.parse.SimpleAuthLogParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,7 @@
-package com.yourname.loganomaly;
+package com.hting007.loganomaly;
 
-import com.yourname.loganomaly.model.LogEvent;
-import com.yourname.loganomaly.parse.SimpleAuthLogParser;
+import com.hting007.loganomaly.model.LogEvent;
+import com.hting007.loganomaly.parse.SimpleAuthLogParser;
 import picocli.CommandLine;
 
 import java.io.BufferedReader;
@@ -14,6 +14,25 @@ public class Main implements Callable<Integer> {
 
     @CommandLine.Option(names = {"-i", "--input"}, required = true, description = "Path to log file")
     private Path input;
+
+
+    @CommandLine.Option(
+        names = {"-w", "--window"},
+        description = "Window size in seconds (default: ${DEFAULT-VALUE})"
+    )
+    private int windowSeconds = 60;
+
+    @CommandLine.Option(
+        names = {"-z", "--zscore"},
+        description = "Z-score threshold for alerts (default: ${DEFAULT-VALUE})"
+    )
+    private double zThreshold = 3.0;
+
+    @CommandLine.Option(
+        names = {"-k", "--key"},
+        description = "Aggregation key: ip or user (default: ${DEFAULT-VALUE})"
+    )
+    private String key = "ip";
 
     @Override
     public Integer call() throws Exception {

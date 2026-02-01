@@ -1,4 +1,4 @@
-package com.yourname.loganomaly.model;
+package com.hting007.loganomaly.model;
 
 import java.time.Instant;
 

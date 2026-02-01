@@ -1,6 +1,6 @@
-package com.yourname.loganomaly.parse;
+package com.hting007.loganomaly.parse;
 
-import com.yourname.loganomaly.model.LogEvent;
+import com.hting007.loganomaly.model.LogEvent;
 
 import java.util.Optional;
 

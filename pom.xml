@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yourname</groupId>
+  <groupId>com.hting007</groupId>
   <artifactId>log-anomaly-detector</artifactId>
   <version>1.0.0</version>
 
@@ -56,7 +56,7 @@
               <shadedClassifierName>all</shadedClassifierName>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.yourname.loganomaly.Main</mainClass>
+                  <mainClass>com.hting007.loganomaly.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
