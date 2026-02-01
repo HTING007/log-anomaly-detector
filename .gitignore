@@ -20,3 +20,9 @@ buildNumber.properties
 sample.log
 report*.json
 report*.txt
+
+# local run artefacts
+sample.log
+report*.json
+report*.txt
+
