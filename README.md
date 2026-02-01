@@ -9,7 +9,7 @@ It produces an explainable report in `text` or `json`, including top-K example l
 
 - Window-based anomaly detection using z-score over error counts
 - Aggregation by `ip` or `user`
-- Explainable alerts with `topK` example lines
+- Explainable alerts with `topK` example log lines
 - Output formats: human-readable `text` or machine-readable `json`
 - Runnable fat JAR (Maven Shade) for easy execution
 - Timezone support for local timestamps via `--tz` (IANA zone IDs)
